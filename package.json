@@ -1,0 +1,14 @@
+{
+  "name": "forex-exchange-api",
+  "version": "1.0.0",
+  "description": "The Forex Exchange API is a powerful and reliable RESTful API that provides real-time and historical foreign exchange (forex) data for global currency pairs. It enables developers, traders, and financial applications to access accurate market rates, perform currency conversions, and analyze forex trends with ease.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
