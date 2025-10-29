@@ -39,7 +39,6 @@ The Forex Exchange API is a powerful and reliable RESTful API that provides real
         ├── .env # Environment variables (not committed)
         ├── .gitignore # Ignored files and folders
         ├── index.js # Entry point – starts the Express app and DB connection
-        ├── app.js # Express app configuration and middleware setup
         ├── package.json # Dependencies and scripts
         └── README.md # Project documentation
 
