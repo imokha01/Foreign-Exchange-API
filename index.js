@@ -1,19 +1,38 @@
-import express from 'express';
-import useRouter from './routes/route.js';
+import dotenv from "dotenv";
+import express from "express";
+import { sequelize } from "./models/sequelize.js";
+import useRoute from "./routes/route.js";
+import "./models/country.js";
 
-// Initialize Express app
 const app = express();
 const PORT =  3000;
 
-// Middleware to parse JSON requests
+dotenv.config();
+
 app.use(express.json());
 
-// Sample route
-app.use('/', useRouter)
+
+// Define routes
+app.use("/", useRoute)
 
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+
+app.use((req, res) => res.status(404).json({ error: "Not found" }));
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).json({ error: "Internal server error" });
 });
 
+
+
+(async () => {
+  try {
+    await sequelize.authenticate();
+    console.log("DB connected successfully");
+    await sequelize.sync({ alter: true });
+    app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+  } catch (err) {
+    console.error("Startup failure:", err);
+    process.exit(1);
+  }
+})();
